@@ -17,9 +17,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        getSavedInstanceState(savedInstanceState)
         initEditText()
     }
 
+    // TODO : 화면 돌림시 조건을 만족하여도 Button 다시 Disable됨. -> LiveData로 수정?
     private fun initEditText() {
         with(binding) {
             editTextEmail.editText?.doOnTextChanged { inputText, _, _, _ ->
@@ -47,4 +49,21 @@ class MainActivity : AppCompatActivity() {
         binding.buttonNext.isEnabled = checkInputList.all { it }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(NICKNAME, binding.editTextNickname.editText?.text.toString())
+        outState.putString(EMAIL, binding.editTextEmail.editText?.text.toString())
+    }
+
+    private fun getSavedInstanceState(savedInstanceState: Bundle?) {
+        savedInstanceState?.let{
+            binding.editTextNickname.editText?.setText(it.getString(NICKNAME))
+            binding.editTextEmail.editText?.setText(it.getString(EMAIL))
+        }
+    }
+
+    companion object {
+        const val NICKNAME = "NICKNAME"
+        const val EMAIL = "EMAIL"
+    }
 }
