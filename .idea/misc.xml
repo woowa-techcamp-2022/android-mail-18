@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/activity_home.xml" value="0.2557291666666667" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/activity_main.xml" value="0.12314814814814815" />
+        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/fragment_mail.xml" value="0.22" />
+        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/fragment_setting.xml" value="0.33" />
+        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/menu/home_bottom_navigation_menu.xml" value="0.2546875" />
       </map>
     </option>
   </component>

@@ -1,16 +1,15 @@
-package com.psw9999.android_mail_18
+package com.psw9999.android_mail_18.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.textfield.TextInputLayout
+import com.psw9999.android_mail_18.R
 import com.psw9999.android_mail_18.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-
     private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater)}
-    private val homeIntent by lazy { Intent(this, HomeActivity::class.java) }
 
     private val nickNameRegex = Regex("[A-Z|a-z|0-9]{4,12}")
     private val emailRegex = Regex("^[a-zA-Z0-9_]{4,12}+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}")
@@ -39,12 +38,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
             buttonNext.setOnClickListener {
-                startActivity(
-                    homeIntent.apply {
-                        this.putExtra(NICKNAME, editTextNickname.editText?.text.toString())
-                        this.putExtra(EMAIL, editTextEmail.editText?.text.toString())
-                    }
-                )
+                val homeIntent = Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                    this.putExtra(NICKNAME, editTextNickname.editText?.text.toString())
+                    this.putExtra(EMAIL, editTextEmail.editText?.text.toString())
+                }
+                startActivity(homeIntent)
                 finish()
             }
         }
