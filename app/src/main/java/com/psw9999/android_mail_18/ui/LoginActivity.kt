@@ -12,7 +12,7 @@ class LoginActivity : AppCompatActivity() {
     private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater)}
 
     private val nickNameRegex = Regex("[A-Z|a-z|0-9]{4,12}")
-    private val emailRegex = Regex("^[a-zA-Z0-9_]{4,12}+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}")
+    private val emailRegex = Regex("^[a-zA-Z0-9_]{4,12}+@[a-zA-Z0-9._]+\\.[a-zA-Z]{2,6}")
     private val checkInputList = arrayOf(false, false)
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -22,7 +22,7 @@ class HomeViewModel : ViewModel(){
         return true
     }
 
-    private fun changeCurrentFragment(fragmentType : FragmentType) {
+    fun changeCurrentFragment(fragmentType : FragmentType) {
         if (currentFragment.value != fragmentType) _currentFragment.value = fragmentType
     }
 }

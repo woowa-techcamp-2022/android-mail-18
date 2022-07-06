@@ -1,23 +1,31 @@
 package com.psw9999.android_mail_18.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.psw9999.android_mail_18.R
+import com.psw9999.android_mail_18.base.BaseFragment
+import com.psw9999.android_mail_18.databinding.FragmentSettingBinding
+import com.psw9999.android_mail_18.ui.LoginActivity.Companion.EMAIL
+import com.psw9999.android_mail_18.ui.LoginActivity.Companion.NICKNAME
 
-class SettingFragment : Fragment() {
+class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.textViewNickName.text = getString(R.string.setting_nickname).format(arguments?.getString(NICKNAME)?:"ERROR")
+        binding.textViewEmail.text = getString(R.string.setting_email).format(arguments?.getString(EMAIL)?:"ERROR")
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting, container, false)
+
+
+    companion object {
+        @JvmStatic
+        fun newInstance(nickname : String?, email: String?) =
+            SettingFragment().apply {
+                arguments = Bundle().apply {
+                    putString(NICKNAME, nickname)
+                    putString(EMAIL, email)
+                }
+            }
     }
 }

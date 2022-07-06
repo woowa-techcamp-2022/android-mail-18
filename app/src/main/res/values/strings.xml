@@ -5,7 +5,8 @@
     <string name="setting">세팅</string>
     <string name="nickname_error">닉네임은 영문과 숫자를 결합한 4~12자로 입력해주세요.</string>
     <string name="email_error">이메일의 형식이 맞는지 확인해주세요.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="backPressWarning">버튼을 한번 더 누르시면 종료됩니다.</string>
+    <string name="setting_nickname">닉네임 : %s</string>
+    <string name="setting_email">이메일 : %s</string>
 
 </resources>
