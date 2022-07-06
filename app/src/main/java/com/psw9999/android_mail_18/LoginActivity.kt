@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.textfield.TextInputLayout
-import com.psw9999.android_mail_18.databinding.ActivityMainBinding
+import com.psw9999.android_mail_18.databinding.ActivityLoginBinding
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}
+    private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater)}
 
     private val nickNameRegex = Regex("[A-Z|a-z|0-9]{4,12}")
     private val emailRegex = Regex("^[a-zA-Z0-9_]{4,12}+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}")
