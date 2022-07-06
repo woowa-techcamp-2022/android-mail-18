@@ -10,13 +10,12 @@ import com.psw9999.android_mail_18.ui.LoginActivity.Companion.NICKNAME
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.textViewNickName.text = getString(R.string.setting_nickname).format(arguments?.getString(NICKNAME)?:"ERROR")
-        binding.textViewEmail.text = getString(R.string.setting_email).format(arguments?.getString(EMAIL)?:"ERROR")
+    override fun initialViews() {
+        with(binding) {
+            textViewNickName.text = getString(R.string.setting_nickname).format(arguments?.getString(NICKNAME)?:"ERROR")
+            textViewEmail.text = getString(R.string.setting_email).format(arguments?.getString(EMAIL)?:"ERROR")
+        }
     }
-
-
 
     companion object {
         @JvmStatic
