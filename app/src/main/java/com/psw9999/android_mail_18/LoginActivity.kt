@@ -1,5 +1,6 @@
 package com.psw9999.android_mail_18
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.widget.doOnTextChanged
@@ -9,6 +10,7 @@ import com.psw9999.android_mail_18.databinding.ActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater)}
+    private val homeIntent by lazy { Intent(this, HomeActivity::class.java) }
 
     private val nickNameRegex = Regex("[A-Z|a-z|0-9]{4,12}")
     private val emailRegex = Regex("^[a-zA-Z0-9_]{4,12}+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}")
@@ -18,11 +20,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         getSavedInstanceState(savedInstanceState)
-        initEditText()
+        initViews()
     }
 
     // TODO : 화면 돌림시 조건을 만족하여도 Button 다시 Disable됨. -> LiveData로 수정?
-    private fun initEditText() {
+    private fun initViews() {
         with(binding) {
             editTextEmail.editText?.doOnTextChanged { inputText, _, _, _ ->
                 inputText?.let { inputText->
@@ -34,6 +36,16 @@ class LoginActivity : AppCompatActivity() {
                 inputText?.let { inputText->
                     checkEditText(editTextNickname, inputText, nickNameRegex, getString(R.string.nickname_error), 1)
                 }
+            }
+
+            buttonNext.setOnClickListener {
+                startActivity(
+                    homeIntent.apply {
+                        this.putExtra(NICKNAME, editTextNickname.editText?.text.toString())
+                        this.putExtra(EMAIL, editTextEmail.editText?.text.toString())
+                    }
+                )
+                finish()
             }
         }
     }
