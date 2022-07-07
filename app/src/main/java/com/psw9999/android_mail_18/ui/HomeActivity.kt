@@ -6,8 +6,10 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import com.psw9999.android_mail_18.R
+import com.psw9999.android_mail_18.data.Email
 import com.psw9999.android_mail_18.databinding.ActivityHomeBinding
 import com.psw9999.android_mail_18.ui.LoginActivity.Companion.EMAIL
+import com.psw9999.android_mail_18.ui.LoginActivity.Companion.EMAILDATA
 import com.psw9999.android_mail_18.ui.LoginActivity.Companion.NICKNAME
 import com.psw9999.android_mail_18.viewmodel.HomeViewModel
 
@@ -58,7 +60,9 @@ class HomeActivity : AppCompatActivity() {
 
     private fun getFragment(fragmentType: FragmentType): Fragment =
         when(fragmentType) {
-            FragmentType.EMAIL -> MailFragment()
+            FragmentType.EMAIL -> MailFragment.newInstance(
+                emailList = intent.getParcelableArrayListExtra<Email>(EMAILDATA) as ArrayList<Email>
+            )
             FragmentType.SETTING -> SettingFragment.newInstance(
                 nickname = intent.getStringExtra(NICKNAME),
                 email = intent.getStringExtra(EMAIL))
@@ -75,7 +79,6 @@ class HomeActivity : AppCompatActivity() {
             changeFragment(it)
         }
     }
-
 }
 
 enum class FragmentType(val tag : String) {

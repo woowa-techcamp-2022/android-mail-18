@@ -3,24 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/drawable/ic_baseline_grade_24.xml" value="0.1" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/drawable/ic_baseline_people_24.xml" value="0.1" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/activity_home.xml" value="0.2557291666666667" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/activity_login.xml" value="0.23278985507246377" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/activity_main.xml" value="0.12314814814814815" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/fragment_blank.xml" value="0.2557291666666667" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/fragment_mail.xml" value="0.33" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/fragment_setting.xml" value="0.33" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/layout/header_navigation_drawer.xml" value="0.3546195652173913" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/menu/home_bottom_navigation_menu.xml" value="0.2546875" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/menu/home_navigation_drawer_menu.xml" value="0.1" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/android_mail_18/app/src/main/res/menu/home_top_app_bar.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/fragment_mail.xml" value="0.3342391304347826" />
+        <entry key="app/src/main/res/layout/item_mail.xml" value="0.45" />
+        <entry key="app/src/main/res/menu/home_bottom_navigation_menu.xml" value="0.4244791666666667" />
+        <entry key="app/src/main/res/menu/home_navigation_drawer_menu.xml" value="0.4244791666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
