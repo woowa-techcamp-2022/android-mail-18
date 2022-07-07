@@ -9,7 +9,6 @@ import java.util.ArrayList
 
 class EmailAdapter : RecyclerView.Adapter<EmailAdapter.EmailViewHolder>() {
     private var emailList : List<Email> = listOf()
-    private var filteredEmailList : List<Email> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmailViewHolder {
         val binding = ItemMailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,7 +17,7 @@ class EmailAdapter : RecyclerView.Adapter<EmailAdapter.EmailViewHolder>() {
 
     override fun onBindViewHolder(holder: EmailViewHolder, position: Int) {
         //TODO : Databinding 고려
-        with(filteredEmailList[position]) {
+        with(emailList[position]) {
             holder.binding.imageViewSender.firstLetter(content.sender.substring(0 until 1))
             holder.binding.textViewTitle.text = content.title
             holder.binding.textViewContent.text = content.content
@@ -26,14 +25,10 @@ class EmailAdapter : RecyclerView.Adapter<EmailAdapter.EmailViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int = filteredEmailList.size
+    override fun getItemCount(): Int = emailList.size
 
-    fun setEmailList(emailList : ArrayList<Email>) {
+    fun setEmailList(emailList : List<Email>) {
         this.emailList = emailList
-    }
-
-    fun setEmailType(emailType : String) {
-        this.filteredEmailList = emailList.filter { it.type == emailType }
         notifyDataSetChanged()
     }
 

@@ -8,8 +8,6 @@ import com.google.android.material.navigation.NavigationBarView
 import com.psw9999.android_mail_18.R
 import com.psw9999.android_mail_18.data.Email
 import com.psw9999.android_mail_18.databinding.ActivityHomeBinding
-import com.psw9999.android_mail_18.ui.HomeActivity.Companion.ELSE_FRAGMENT
-import com.psw9999.android_mail_18.ui.HomeActivity.Companion.FIRST_FRAGMENT
 import com.psw9999.android_mail_18.ui.LoginActivity.Companion.EMAIL
 import com.psw9999.android_mail_18.ui.LoginActivity.Companion.EMAILDATA
 import com.psw9999.android_mail_18.ui.LoginActivity.Companion.NICKNAME
@@ -23,15 +21,28 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initViews()
+        viewModel.setMailArrayList(intent.getParcelableArrayListExtra<Email>(EMAILDATA) as ArrayList<Email>)
         initObserver()
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount == 1) {
-            binding.bottomNavigation?.selectedItemId = R.id.menu_mail
-            binding.homeNavigationRail?.selectedItemId = R.id.menu_mail
+        val mailFragment = supportFragmentManager.findFragmentByTag(FragmentType.EMAIL.tag)
+        mailFragment?.let{ mailFragment ->
+            if(mailFragment.isVisible) {
+                if (mailFragment.childFragmentManager.backStackEntryCount == 1) {
+                    mailFragment.childFragmentManager.popBackStackImmediate()
+                } else {
+                    finish()
+                }
+            } else {
+                if (supportFragmentManager.backStackEntryCount == 1) {
+                    binding.bottomNavigation?.selectedItemId = R.id.menu_mail
+                    binding.homeNavigationRail?.selectedItemId = R.id.menu_mail
+                } else {
+                    super.onBackPressed()
+                }
+            }
         }
-        super.onBackPressed()
     }
 
     private fun changeFragment(fragmentType: FragmentType) {
@@ -47,6 +58,13 @@ class HomeActivity : AppCompatActivity() {
                 transaction.add(R.id.container, targetFragment, fragmentType.tag)
             }
         }
+
+        if (fragmentType != FragmentType.EMAIL) {
+            val mailFragment = supportFragmentManager.findFragmentByTag(FragmentType.EMAIL.tag)
+            mailFragment?.let { mailFragment ->
+                mailFragment.childFragmentManager.popBackStackImmediate()
+            }
+        }
         transaction.show(targetFragment)
         FragmentType.values()
             .filterNot { it == fragmentType }
@@ -60,9 +78,10 @@ class HomeActivity : AppCompatActivity() {
 
     private fun getFragment(fragmentType: FragmentType): Fragment =
         when(fragmentType) {
-            FragmentType.EMAIL -> MailFragment.newInstance(
-                emailList = intent.getParcelableArrayListExtra<Email>(EMAILDATA) as ArrayList<Email>
-            )
+//            FragmentType.EMAIL -> MailFragment.newInstance(
+//                emailList = intent.getParcelableArrayListExtra<Email>(EMAILDATA) as ArrayList<Email>
+//            )
+            FragmentType.EMAIL -> MailFragment()
             FragmentType.SETTING -> SettingFragment.newInstance(
                 nickname = intent.getStringExtra(NICKNAME),
                 email = intent.getStringExtra(EMAIL))
@@ -85,14 +104,9 @@ class HomeActivity : AppCompatActivity() {
         }
         this.selectedItemId = viewModel.currentFragment.value?.itemId ?: R.id.menu_mail
     }
-
-    companion object {
-        const val FIRST_FRAGMENT = "FIRST_FRAGMENT"
-        const val ELSE_FRAGMENT = "ELSE_FRAGMENT"
-    }
 }
 
-enum class FragmentType(val tag : String, val itemId : Int, val stackName : String) {
-    EMAIL("EMAIL", R.id.menu_mail, FIRST_FRAGMENT),
-    SETTING("SETTING", R.id.menu_setting, ELSE_FRAGMENT)
+enum class FragmentType(val tag : String, val itemId : Int) {
+    EMAIL("EMAIL", R.id.menu_mail),
+    SETTING("SETTING", R.id.menu_setting)
 }

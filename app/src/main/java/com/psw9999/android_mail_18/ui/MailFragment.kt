@@ -1,51 +1,62 @@
 package com.psw9999.android_mail_18.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
-import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.psw9999.android_mail_18.R
-import com.psw9999.android_mail_18.adapter.EmailAdapter
 import com.psw9999.android_mail_18.base.BaseFragment
 import com.psw9999.android_mail_18.data.Email
 import com.psw9999.android_mail_18.databinding.FragmentMailBinding
 import com.psw9999.android_mail_18.ui.LoginActivity.Companion.EMAILDATA
-import com.psw9999.android_mail_18.viewmodel.HomeViewModel
+import com.psw9999.android_mail_18.viewmodel.MailViewModel
 
 class MailFragment : BaseFragment<FragmentMailBinding>(FragmentMailBinding::inflate) {
-    lateinit var emailAdapter: EmailAdapter
-    private val viewModel : HomeViewModel by viewModels()
-
-    override fun onResume() {
-        Log.d("onStart","onStart")
-        viewModel.setCurrentFragment(FragmentType.EMAIL.itemId)
-        super.onResume()
-    }
+    private val mailViewModel : MailViewModel by viewModels()
 
     override fun initialViews() {
+        initObserver()
         with(binding) {
             topAppBar.setNavigationOnClickListener {
                 drawerLayout.openDrawer(Gravity.LEFT)
             }
             navigationViewHome.setNavigationItemSelectedListener { menuItem ->
-                val emailType = EmailType.values().filter{it.itemID == menuItem.itemId}[0]
-                textViewEmailType.text = emailType.title
-                emailAdapter.setEmailType(emailType.type)
+                mailViewModel.setEmailType(menuItem.itemId)
                 true
             }
         }
-        initRecyclerView()
     }
 
-    private fun initRecyclerView() {
-        emailAdapter = EmailAdapter()
-        arguments?.getParcelableArrayList<Email>(EMAILDATA)?.let { emailAdapter.setEmailList(it) }
-        emailAdapter.setEmailType(EmailType.Primary.type)
-        binding.textViewEmailType.text = EmailType.Primary.title
-        binding.recyclerViewEmail.adapter = emailAdapter
-        binding.recyclerViewEmail.layoutManager = LinearLayoutManager(requireContext())
+    private fun changeFragment(emailType: EmailType) {
+        val transaction = childFragmentManager.beginTransaction()
+        var targetFragment = childFragmentManager.findFragmentByTag(emailType.type)
+        if (targetFragment == null) {
+            targetFragment = getFragment(emailType.type)
+            if (emailType == EmailType.Primary) {
+                transaction.add(R.id.email_container, targetFragment, emailType.type)
+            }else{
+                if (childFragmentManager.backStackEntryCount == 0) {
+                    transaction.addToBackStack(null)
+                }
+                transaction.add(R.id.email_container, targetFragment, emailType.type)
+            }
+        }
+        transaction.show(targetFragment)
+        EmailType.values()
+            .filterNot { it == emailType }
+            .forEach { emailType ->
+                childFragmentManager.findFragmentByTag(emailType.type)?.let {
+                    transaction.hide(it)
+                }
+            }
+        transaction.commitAllowingStateLoss()
+    }
+    private fun getFragment(emailType : String): Fragment = EmailListFragment.newInstance(emailType)
+
+    private fun initObserver() {
+        mailViewModel.emailType.observe(viewLifecycleOwner) {
+            changeFragment(it)
+        }
     }
 
     companion object {
@@ -60,7 +71,7 @@ class MailFragment : BaseFragment<FragmentMailBinding>(FragmentMailBinding::infl
 }
 
 enum class EmailType(val itemID : Int, val title : String, val type : String) {
-    Primary(R.id.drawer_item_primary, "중요", "Primary"),
+    Primary(R.id.drawer_item_primary, "기본", "Primary"),
     Social(R.id.drawer_item_social, "소셜", "Social"),
     Promotion(R.id.drawer_item_promotion, "프로모션", "Promotion")
 }

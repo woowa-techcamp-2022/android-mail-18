@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.29791666666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3234375" />
         <entry key="app/src/main/res/layout/email_profile_view.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_email_list.xml" value="0.3342391304347826" />
         <entry key="app/src/main/res/layout/fragment_mail.xml" value="0.3342391304347826" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.13949275362318841" />
         <entry key="app/src/main/res/layout/header_navigation_drawer.xml" value="0.13949275362318841" />
