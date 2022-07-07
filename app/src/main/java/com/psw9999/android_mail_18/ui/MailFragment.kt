@@ -20,21 +20,9 @@ class MailFragment : BaseFragment<FragmentMailBinding>(FragmentMailBinding::infl
             }
 
             navigationViewHome.setNavigationItemSelectedListener { menuItem ->
-                when(menuItem.itemId) {
-                    EmailType.Primary.itemID -> {
-                        textViewEmailType.text = EmailType.Primary.title
-                        emailAdapter.setEmailType(EmailType.Primary.type)
-                    }
-                    EmailType.Promotion.itemID -> {
-                    textViewEmailType.text = EmailType.Promotion.title
-                    emailAdapter.setEmailType(EmailType.Promotion.type)
-                    }
-                    EmailType.Social.itemID -> {
-                        textViewEmailType.text = EmailType.Social.title
-                        emailAdapter.setEmailType(EmailType.Social.type)
-                    }
-                    else -> { }
-                }
+                val emailType = EmailType.values().filter{it.itemID == menuItem.itemId}[0]
+                textViewEmailType.text = emailType.title
+                emailAdapter.setEmailType(emailType.type)
                 true
             }
         }
