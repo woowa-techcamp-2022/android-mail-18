@@ -19,6 +19,7 @@ class EmailAdapter : RecyclerView.Adapter<EmailAdapter.EmailViewHolder>() {
     override fun onBindViewHolder(holder: EmailViewHolder, position: Int) {
         //TODO : Databinding 고려
         with(filteredEmailList[position]) {
+            holder.binding.imageViewSender.firstLetter(content.sender.substring(0 until 1))
             holder.binding.textViewTitle.text = content.title
             holder.binding.textViewContent.text = content.content
             holder.binding.textViewName.text = content.sender
@@ -33,6 +34,7 @@ class EmailAdapter : RecyclerView.Adapter<EmailAdapter.EmailViewHolder>() {
 
     fun setEmailType(emailType : String) {
         this.filteredEmailList = emailList.filter { it.type == emailType }
+        notifyDataSetChanged()
     }
 
     class EmailViewHolder(val binding : ItemMailBinding) : RecyclerView.ViewHolder(binding.root)

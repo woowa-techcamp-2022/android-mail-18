@@ -20,11 +20,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        getSavedInstanceState(savedInstanceState)
         initViews()
+        getSavedInstanceState(savedInstanceState)
     }
 
-    // TODO : 화면 돌림시 조건을 만족하여도 Button 다시 Disable됨. -> LiveData로 수정?
     private fun initViews() {
         with(binding) {
             editTextEmail.editText?.doOnTextChanged { inputText, _, _, _ ->
