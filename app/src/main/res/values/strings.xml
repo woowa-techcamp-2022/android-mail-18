@@ -12,4 +12,7 @@
     <string name="primary">중요</string>
     <string name="Social">소셜</string>
     <string name="Promotion">프로모션</string>
+
+    <string name="firstFragment">FirstFragment</string>
+    <string name="elseFragment">elseFragment</string>
 </resources>

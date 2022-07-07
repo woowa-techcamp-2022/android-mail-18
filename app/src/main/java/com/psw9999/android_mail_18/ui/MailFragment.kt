@@ -1,7 +1,10 @@
 package com.psw9999.android_mail_18.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.psw9999.android_mail_18.R
 import com.psw9999.android_mail_18.adapter.EmailAdapter
@@ -9,9 +12,17 @@ import com.psw9999.android_mail_18.base.BaseFragment
 import com.psw9999.android_mail_18.data.Email
 import com.psw9999.android_mail_18.databinding.FragmentMailBinding
 import com.psw9999.android_mail_18.ui.LoginActivity.Companion.EMAILDATA
+import com.psw9999.android_mail_18.viewmodel.HomeViewModel
 
 class MailFragment : BaseFragment<FragmentMailBinding>(FragmentMailBinding::inflate) {
     lateinit var emailAdapter: EmailAdapter
+    private val viewModel : HomeViewModel by viewModels()
+
+    override fun onResume() {
+        Log.d("onStart","onStart")
+        viewModel.setCurrentFragment(FragmentType.EMAIL.itemId)
+        super.onResume()
+    }
 
     override fun initialViews() {
         with(binding) {

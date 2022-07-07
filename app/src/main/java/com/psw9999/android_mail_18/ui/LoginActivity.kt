@@ -21,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initViews()
+        test()
         getSavedInstanceState(savedInstanceState)
     }
 
@@ -89,6 +90,17 @@ class LoginActivity : AppCompatActivity() {
             Email("Primary", Content("abcdek", "abcdefg", "abcdekabcdekabcdek", "2022-04-11")),
             Email("Promotion", Content("kkkkkk", "kkkkkk", "kkkkkkkkkkkkkkkkkkkkk", "2022-11-11")))
 
+    private fun test() {
+        binding.imageViewEmail.setOnClickListener {
+            val homeIntent = Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                this.putExtra(NICKNAME, "psw9999")
+                this.putExtra(EMAIL, "abcd@cdcdc.com")
+                this.putParcelableArrayListExtra(EMAILDATA, createDummyData())
+            }
+            startActivity(homeIntent)
+            finish()
+        }
+    }
 
     companion object {
         const val NICKNAME = "NICKNAME"
