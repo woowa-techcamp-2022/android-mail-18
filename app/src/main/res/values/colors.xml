@@ -8,7 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#A19C9C</color>
-    
+
+    <color name="emailColor">#F0B3B3</color>
+    <color name="textColor">#FF000000</color>
+    <color name="background">#FFFFFFFF</color>
+
     <color name="red">#E91E63</color>
     <color name="orange">#FF9800</color>
     <color name="yellow">#FFEB3B</color>

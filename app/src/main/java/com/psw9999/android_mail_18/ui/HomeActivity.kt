@@ -2,9 +2,12 @@ package com.psw9999.android_mail_18.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import com.psw9999.android_mail_18.R
 import com.psw9999.android_mail_18.data.Email
 import com.psw9999.android_mail_18.databinding.ActivityHomeBinding
@@ -27,7 +30,8 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (viewModel.currentFragment.value != FragmentType.EMAIL) {
-            binding.bottomNavigation.selectedItemId = R.id.menu_mail
+            binding.bottomNavigation?.selectedItemId = R.id.menu_mail
+            binding.homeNavigationRail?.selectedItemId = R.id.menu_mail
             viewModel.changeCurrentFragment(FragmentType.EMAIL)
         } else {
             if (System.currentTimeMillis() > backKeyPressTime + 2000) {
@@ -69,9 +73,8 @@ class HomeActivity : AppCompatActivity() {
             }
 
     private fun initViews() {
-        binding.bottomNavigation.setOnItemSelectedListener { menuItem ->
-            viewModel.setCurrentFragment(menuItem.itemId)
-        }
+        binding.bottomNavigation?.tabInitial()
+        binding.homeNavigationRail?.tabInitial()
     }
 
     private fun initObserver() {
@@ -79,9 +82,16 @@ class HomeActivity : AppCompatActivity() {
             changeFragment(it)
         }
     }
+
+    private fun NavigationBarView.tabInitial() {
+        this.setOnItemSelectedListener { menuItem ->
+            viewModel.setCurrentFragment(menuItem.itemId)
+        }
+        this.selectedItemId = viewModel.currentFragment.value?.itemId ?: R.id.menu_mail
+    }
 }
 
-enum class FragmentType(val tag : String) {
-    EMAIL("EMAIL"),
-    SETTING("SETTING")
+enum class FragmentType(val tag : String, val itemId : Int) {
+    EMAIL("EMAIL", R.id.menu_mail),
+    SETTING("SETTING", R.id.menu_setting)
 }

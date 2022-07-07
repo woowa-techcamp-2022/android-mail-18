@@ -18,7 +18,6 @@ class MailFragment : BaseFragment<FragmentMailBinding>(FragmentMailBinding::infl
             topAppBar.setNavigationOnClickListener {
                 drawerLayout.openDrawer(Gravity.LEFT)
             }
-
             navigationViewHome.setNavigationItemSelectedListener { menuItem ->
                 val emailType = EmailType.values().filter{it.itemID == menuItem.itemId}[0]
                 textViewEmailType.text = emailType.title
