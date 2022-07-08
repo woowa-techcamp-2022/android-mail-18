@@ -76,19 +76,19 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun createDummyData() : ArrayList<Email> = arrayListOf(
-            Email("Primary", Content("Google", "보안 알림", "Android에서 새로 로그인함. abcdek abcdek", "2022-05-11")),
+            Email("Primary", Content("Google", "보안 알림", "Android에서 새로 로그인했습니다.", "2022-05-11")),
             Email("Social", Content("김영희", "1촌 맺어요", "1촌을 맺고 싶습니다.", "2022-07-12")),
             Email("Promotion", Content("Zoom", "성공적인 회의 호스트를 위한 팁", "줌 좋아요", "2022-11-11")),
-            Email("Promotion", Content("김철수", "철수철수철수", "철수철수철수철수철수철수", "2022-01-11")),
+            Email("Promotion", Content("광고", "광고광고", "광고광고광고광고광고광고광고광고광과광고광고광고광고광고광고광고광고광고광고광고광고광고", "2022-01-11")),
             Email("Promotion", Content("신세계백화점", "여름맞이세일", "여름맞이 대세일", "2022-11-11")),
-            Email("Social", Content("LinkedIn", "제이가 1촌 신청을 보냈습니다.", "인맥키우기 활성화", "2022-05-11")),
-            Email("Social", Content("Facebook", "가입 하신 그룹에 새로운 글이 등록됐습니다.", "ㅁㅇ머어머넝먼어ㅓㅁㄴ", "2022-05-11")),
-            Email("Promotion", Content("김나나", "김나나나", "김나나나나나나난나나나나나", "2022-05-11")),
-            Email("Primary", Content("KIM", "보안 알림", "Android에서 새로 로그인함. abcdek abcdek", "2022-05-11")),
-            Email("Primary", Content("ParkSeungWoon", "보안 알림", "Android에서 새로 로그인함. abcdek abcdek", "2022-05-11")),
+            Email("Social", Content("LinkedIn", "JAY가 1촌 신청을 보냈습니다.", "LinkedIn에 접속하여 확인해보세요!", "2022-05-11")),
+            Email("Social", Content("Facebook", "가입 하신 그룹에 새로운 글이 등록됐습니다.", "페이스북에 접속하여 확인해보세요", "2022-05-11")),
+            Email("Promotion", Content("Adobe", "Adobe PDF", "비밀번호는 완벽하게, PDF 보안은 Acrobat", "2022-05-11")),
+            Email("Primary", Content("김철수", "안녕하세요 김철수라고 합니다", "안녕하세요 김철수라고 합니다. 처음 뵙겠습니다.", "2022-05-11")),
+            Email("Primary", Content("David", "Let's Connect!", "Dear Ivy, we are seeking senior software engineer", "2022-05-11")),
             Email("Promotion", Content("우아한테크캠프5기", "5기를 모집합니다.", "우아한 개발자가 되고 싶은 사람은 나에게..", "2022-05-17")),
-            Email("Primary", Content("abcdek", "abcdefg", "abcdekabcdekabcdek", "2022-04-11")),
-            Email("Promotion", Content("kkkkkk", "kkkkkk", "kkkkkkkkkkkkkkkkkkkkk", "2022-11-11")))
+            Email("Primary", Content("Slido", "Your how-to guide for managing Slido", "Hi there, Welcome to Slido, a live Q&A and pollitical fdfdffdfdfdfdfdf", "2022-04-11")),
+            Email("Promotion", Content("무료 알고리즘 강의", "선착순 50명에게 기회를 드립니다", "5분만 투자하시면 알고리즘 강의를 7일간 열람할 수 있는 기회를 드립니다.", "2022-11-11")))
 
     private fun test() {
         binding.imageViewEmail.setOnClickListener {

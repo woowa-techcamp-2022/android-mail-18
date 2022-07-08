@@ -9,9 +9,9 @@
     <string name="setting_nickname">닉네임 : %s</string>
     <string name="setting_email">이메일 : %s</string>
     <string name="emailTitle">W mail</string>
-    <string name="primary">기본</string>
-    <string name="Social">소셜</string>
-    <string name="Promotion">프로모션</string>
+    <string name="primary">Primary</string>
+    <string name="Social">Social</string>
+    <string name="Promotion">Promotion</string>
 
     <string name="firstFragment">FirstFragment</string>
     <string name="elseFragment">elseFragment</string>

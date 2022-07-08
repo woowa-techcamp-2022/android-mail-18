@@ -1,7 +1,6 @@
 package com.psw9999.android_mail_18.ui
 
 import android.os.Bundle
-import android.view.View
 import com.psw9999.android_mail_18.R
 import com.psw9999.android_mail_18.base.BaseFragment
 import com.psw9999.android_mail_18.databinding.FragmentSettingBinding

@@ -32,14 +32,8 @@ class MailFragment : BaseFragment<FragmentMailBinding>(FragmentMailBinding::infl
         var targetFragment = childFragmentManager.findFragmentByTag(emailType.type)
         if (targetFragment == null) {
             targetFragment = getFragment(emailType.type)
-            if (emailType == EmailType.Primary) {
-                transaction.add(R.id.email_container, targetFragment, emailType.type)
-            }else{
-                if (childFragmentManager.backStackEntryCount == 0) {
-                    transaction.addToBackStack(null)
-                }
-                transaction.add(R.id.email_container, targetFragment, emailType.type)
-            }
+            if (emailType != EmailType.Primary && childFragmentManager.backStackEntryCount == 0) transaction.addToBackStack(null)
+            transaction.add(R.id.email_container, targetFragment, emailType.type)
         }
         transaction.show(targetFragment)
         EmailType.values()

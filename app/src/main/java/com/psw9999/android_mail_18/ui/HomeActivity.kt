@@ -50,13 +50,9 @@ class HomeActivity : AppCompatActivity() {
         var targetFragment = supportFragmentManager.findFragmentByTag(fragmentType.tag)
         if (targetFragment == null) {
             targetFragment = getFragment(fragmentType)
-            if (fragmentType == FragmentType.EMAIL) {
-                transaction
-                    .add(R.id.container, targetFragment, fragmentType.tag)
-            }else{
-                if (supportFragmentManager.backStackEntryCount == 0) transaction.addToBackStack(null)
-                transaction.add(R.id.container, targetFragment, fragmentType.tag)
-            }
+            if (fragmentType != FragmentType.EMAIL && supportFragmentManager.backStackEntryCount == 0) transaction.addToBackStack(null)
+            transaction.add(R.id.container, targetFragment, fragmentType.tag)
+
         }
 
         if (fragmentType != FragmentType.EMAIL) {
@@ -78,9 +74,6 @@ class HomeActivity : AppCompatActivity() {
 
     private fun getFragment(fragmentType: FragmentType): Fragment =
         when(fragmentType) {
-//            FragmentType.EMAIL -> MailFragment.newInstance(
-//                emailList = intent.getParcelableArrayListExtra<Email>(EMAILDATA) as ArrayList<Email>
-//            )
             FragmentType.EMAIL -> MailFragment()
             FragmentType.SETTING -> SettingFragment.newInstance(
                 nickname = intent.getStringExtra(NICKNAME),
