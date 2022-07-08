@@ -3,6 +3,7 @@ package com.psw9999.android_mail_18.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.textfield.TextInputLayout
 import com.psw9999.android_mail_18.R

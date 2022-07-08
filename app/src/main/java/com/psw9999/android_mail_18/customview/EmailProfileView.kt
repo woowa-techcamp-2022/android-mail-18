@@ -51,6 +51,7 @@ class EmailProfileView : ConstraintLayout {
         with(binding) {
             if (firstLetter.matches(letterRegex)) {
                 imageViewProfile.setImageResource(0)
+                // 첫번째 글자의 아스키코드 값을 읽고 인덱스 값으로 활용
                 val color = (firstLetter[0].code % 8)
                 imageViewProfile.setBackgroundColor(
                     ContextCompat.getColor(
@@ -75,7 +76,8 @@ class EmailProfileView : ConstraintLayout {
 
     companion object {
         val letterRegex = Regex("[a-zA-z]")
-        val colorList = listOf(
+        // 초기 생성시 리스트 색상 섞기
+        val colorList = mutableListOf(
             R.color.red,
             R.color.orange,
             R.color.yellow,
@@ -84,6 +86,6 @@ class EmailProfileView : ConstraintLayout {
             R.color.deepblue,
             R.color.purple,
             R.color.greenyellow
-        )
+        ).shuffled()
     }
 }
