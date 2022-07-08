@@ -13,7 +13,6 @@ import com.psw9999.android_mail_18.databinding.EmailProfileViewBinding
 class EmailProfileView : ConstraintLayout {
 
     private lateinit var binding : EmailProfileViewBinding
-
     constructor(context: Context) : super(context) {
         initView()
     }
